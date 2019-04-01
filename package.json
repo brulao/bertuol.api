@@ -1,0 +1,26 @@
+{
+  "name": "bertuol.api",
+  "version": "1.0.0",
+  "description": "Projeto para controle de viagens e economia de combustível",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brulao/bertuol.api.git"
+  },
+  "keywords": [
+    "bertuol",
+    "viagens",
+    "combustivel",
+    "api",
+    "mongodb"
+  ],
+  "author": "Bruno Maia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brulao/bertuol.api/issues"
+  },
+  "homepage": "https://github.com/brulao/bertuol.api#readme"
+}
