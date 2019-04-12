@@ -6,6 +6,11 @@ const variables = require('../bin/configuration/variables');
 //routers
 const categoriaRouter = require('../routes/categoria-router');
 const produtoRouter = require('../routes/produto-router');
+const administradorRouter = require('../routes/administrador-router');
+const motoristaRouter = require('../routes/motorista-router');
+const viagemRouter = require('../routes/viagem-router');
+const mensalRouter = require('../routes/mensal-router');
+const caminhaoRouter = require('../routes/caminhao-router');
 
 //Criando/Invocando a Api/Server Web do Express
 const app = express();
@@ -13,14 +18,39 @@ const app = express();
 //Configuração de parse do JSON
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
- 
-//Configurando a conexão com banco de dados
-mongoose.set('useCreateIndex', true);
-mongoose.connect(variables.Database.connection, { useNewUrlParser: true });
 
-//Configurando as rotas
+// Mongoose - Configurando a conexão com banco de dados
+const url = variables.Database.connection;
+const options = {
+    reconnectTries: Number.MAX_VALUE,
+    reconnectInterval: 500,
+    poolSize: 5,
+    useNewUrlParser: true
+};
+ 
+mongoose.connect(url, options);
+mongoose.set('useCreateIndex', true);
+
+mongoose.connection.on('error', (err)=>{
+    console.log('Erro na conexão com o banco de dados: ' + err);
+});
+
+mongoose.connection.on('connected', () => {
+    console.log('Aplicação conectada do banco de dados com sucesso.');
+});
+
+mongoose.connection.on('disconnected', () => {
+    console.log('Aplicação desconectada do banco de dados');
+});
+
+// Configurando as rotas
 app.use('/api/categoria', categoriaRouter);
 app.use('/api/produto', produtoRouter);
+app.use('/api/administrador', administradorRouter);
+app.use('/api/motorista', motoristaRouter);
+app.use('/api/viagem', viagemRouter);
+app.use('/api/mensal', mensalRouter);
+app.use('/api/caminhao', caminhaoRouter);
 
 //Exportando nossa Api
 module.exports = app;
