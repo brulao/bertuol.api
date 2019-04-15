@@ -1,35 +1,33 @@
 'use-strict'
 
 require('../models/caminhao-model');
-const mongoose = require('mongoose');
-const CaminhaoModel = mongoose.model('Caminhao');
+const base = require('../bin/base/repository-base');
+
 
 class caminhaoRepository {
-    constructor(){
+    
+    constructor() {
+        this._base = new base('Caminhao');
     }
 
     async create(data) {
-        let caminhao = new CaminhaoModel(data);
-        let resultado = await caminhao.save();
-        return resultado;
+        return await this._base.create(data);
     }
 
     async update (id, data) {
-        await CaminhaoModel.findByIdAndUpdate(id, { $set: data });
-        let resultado = await CaminhaoModel.findById(id);
-        return resultado;
+        return await this._base.update(id, data);
     }
 
     async getAll(){
-        return await CaminhaoModel.find();
+        return await this._base.getAll();
     }
 
     async getById(id) {
-        return await CaminhaoModel.findById(id);
+        return await this._base.getById(id);
     }
 
     async delete(id) {
-        return await CaminhaoModel.findByIdAndRemove(id);
+        return await this._base.delete(id);
     }
 
 }

@@ -1,36 +1,34 @@
 'use-strict'
 
 require('../models/motorista-model');
-const mongoose = require('mongoose');
-const MotoristaModel = mongoose.model('Motorista');
+const base = require('../bin/base/repository-base');
 
 class motoristaRepository {
-    constructor(){
+
+    constructor() {
+        this._base = new base('Motorista');
     }
 
     async create(data) {
-        let motorista = new MotoristaModel(data);
-        let resultado = await motorista.save();
-        return resultado;
+        return await this._base.create(data);
     }
 
     async update (id, data) {
-        await MotoristaModel.findByIdAndUpdate(id, { $set: data });
-        let resultado = await MotoristaModel.findById(id);
-        return resultado;
+        return await this._base.update(id, data);
     }
 
     async getAll(){
-        return await MotoristaModel.find();
+        return await this._base.getAll();
     }
 
     async getById(id) {
-        return await MotoristaModel.findById(id);
+        return await this._base.getById(id);
     }
 
     async delete(id) {
-        return await MotoristaModel.findByIdAndRemove(id);
+        return await this._base.delete(id);
     }
+
 
 }
 

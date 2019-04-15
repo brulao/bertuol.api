@@ -1,35 +1,32 @@
 'use-strict'
 
 require('../models/administrador-model');
-const mongoose = require('mongoose');
-const AdministradorModel = mongoose.model('Administrador');
+const base = require('../bin/base/repository-base');
 
 class administradorRepository {
-    constructor(){
+
+    constructor() {
+        this._base = new base('Administrador');
     }
 
     async create(data) {
-        let administrador = new AdministradorModel(data);
-        let resultado = await administrador.save();
-        return resultado;
+        return await this._base.create(data);
     }
 
     async update (id, data) {
-        await AdministradorModel.findByIdAndUpdate(id, { $set: data });
-        let resultado = await AdministradorModel.findById(id);
-        return resultado;
+        return await this._base.update(id, data);
     }
 
     async getAll(){
-        return await AdministradorModel.find();
+        return await this._base.getAll();
     }
 
     async getById(id) {
-        return await AdministradorModel.findById(id);
+        return await this._base.getById(id);
     }
 
     async delete(id) {
-        return await AdministradorModel.findByIdAndRemove(id);
+        return await this._base.delete(id);
     }
 
 }
