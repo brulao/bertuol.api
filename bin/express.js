@@ -4,12 +4,9 @@ const mongoose = require('mongoose');
 const variables = require('../bin/configuration/variables');
 
 //routers
-const categoriaRouter = require('../routes/categoria-router');
-const produtoRouter = require('../routes/produto-router');
 const administradorRouter = require('../routes/administrador-router');
 const motoristaRouter = require('../routes/motorista-router');
 const viagemRouter = require('../routes/viagem-router');
-const mensalRouter = require('../routes/mensal-router');
 const caminhaoRouter = require('../routes/caminhao-router');
 
 //Criando/Invocando a Api/Server Web do Express
@@ -44,12 +41,9 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Configurando as rotas
-app.use('/api/categoria', categoriaRouter);
-app.use('/api/produto', produtoRouter);
 app.use('/api/administrador', administradorRouter);
 app.use('/api/motorista', motoristaRouter);
 app.use('/api/viagem', viagemRouter);
-app.use('/api/mensal', mensalRouter);
 app.use('/api/caminhao', caminhaoRouter);
 
 //Exportando nossa Api

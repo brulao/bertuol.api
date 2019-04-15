@@ -4,10 +4,16 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const viagemModel = new schema({
-    titulo: { trim: true, index: true, required: true, type: String },
-    descricao: { type: String },
-    foto: { type: String, required: true },
-    ativa: { type: Boolean, required: true },
+    dataViagem: { type: String, required: true, index: true },
+    motorista: { type: String, required: true, index: true },
+    cliente: { type: String, required: true },
+    destinatario: { type: String, required: true },
+    notaFiscal: { type: String, required: true },
+    produto: { type: String, required: true },
+    pesoCarga: { type: Number, required: true },
+    kmInicial: { type: Number, required: true },
+    kmFinal: { type: Number, required: true },
+    quantidadeLitros: { type: Number, require: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 

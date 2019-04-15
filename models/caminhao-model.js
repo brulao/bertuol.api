@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const caminhaoModel = new schema({
-    titulo: { trim: true, index: true, required: true, type: String },
-    descricao: { type: String },
-    foto: { type: String, required: true },
-    ativa: { type: Boolean, required: true },
+    placa: { type: String, required: true, trim: true, index: true },
+    modeloCaminhao: { type: String, required: true },
+    motorista: { type: String, required: true },
+    ativo: { type: Boolean, required: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 

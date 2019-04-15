@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const administradorModel = new schema({
-    titulo: { trim: true, index: true, required: true, type: String },
-    descricao: { type: String },
-    foto: { type: String, required: true },
-    ativa: { type: Boolean, required: true },
+    nome: { type: String, required: true, trim: true, index: true },
+    email: { type: String, required: true },
+    senha: { type: String, required: true },
+    ativo: { type: Boolean, required: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 
