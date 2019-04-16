@@ -6,8 +6,9 @@ const schema = mongoose.Schema;
 const motoristaModel = new schema({
     nome: { type: String, required: true, trim: true, index: true },
     email: { type: String, required: true },
-    senha: { type: String, required: true },
-    ativo: { type: Boolean, required: true },
+    telefoneUm: { type: String, required: true },
+    telefoneDois:  { type: String },
+    ativo: { type: Boolean, required: true, default: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 

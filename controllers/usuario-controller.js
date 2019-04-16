@@ -14,7 +14,7 @@ function usuarioController() {
 
 // Criar
 usuarioController.prototype.post = async (req, res) => {
-    // Aciona o validador
+    // Cria o validador
     let _validationContract = new validation();
     // Critérios de validação
     _validationContract.isRequired(req.body.nome, 'Informe seu nome.');

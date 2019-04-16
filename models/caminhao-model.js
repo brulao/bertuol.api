@@ -7,7 +7,7 @@ const caminhaoModel = new schema({
     placa: { type: String, required: true, trim: true, index: true },
     modeloCaminhao: { type: String, required: true },
     motorista: { type: String, required: true },
-    ativo: { type: Boolean, required: true },
+    ativo: { type: Boolean, required: true, default: true  },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 

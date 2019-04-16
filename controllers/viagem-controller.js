@@ -1,7 +1,10 @@
 'use strict'
 
-require('../models/viagem-model');
 const repository = require('../repositories/viagem-repository');
+const validation = require('../bin/helpers/validation');
+const ctrlBase = require('../bin/base/controller-base');
+const _repo = new repository();
+
 
 function viagemController() {
 
@@ -9,33 +12,55 @@ function viagemController() {
 
 // Criar
 viagemController.prototype.post = async (req, res) => {
-    let resultado = await new repository().create(req.body);
-    res.status(201).send(resultado);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.dataViagem, 'Informe a data da viagem');
+    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista');
+    _validationContract.isRequired(req.body.cliente, 'Informe o nome do cliente');
+    _validationContract.isRequired(req.body.destinatario, 'Informe o nome do destinatario');
+    _validationContract.isRequired(req.body.notaFiscal, 'Informe o número da nota fiscal');
+    _validationContract.isRequired(req.body.produto, 'Informe o produto transportado');
+    _validationContract.isRequired(req.body.pesoCarga, 'Informe o peso da carga');
+    _validationContract.isRequired(req.body.kmInicial, 'Informe o Km do início da viagem');
+    _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
+    _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
+    // Realização a criação da viagem
+    ctrlBase.post(_repo, _validationContract, req, res);
 };
 
 // Atualiza pelo id
 viagemController.prototype.put = async (req, res) => {
-    let viagemEncontrada = await new repository().update(req.params.id);
-    res.status(202).send(viagemEncontrada);
-    console.log(`Registro atualizado no banco de dados: ${viagemEncontrada}`);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.dataViagem, 'Informe a data da viagem');
+    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista');
+    _validationContract.isRequired(req.body.cliente, 'Informe o nome do cliente');
+    _validationContract.isRequired(req.body.destinatario, 'Informe o nome do destinatario');
+    _validationContract.isRequired(req.body.notaFiscal, 'Informe o número da nota fiscal');
+    _validationContract.isRequired(req.body.produto, 'Informe o produto transportado');
+    _validationContract.isRequired(req.body.pesoCarga, 'Informe o peso da carga');
+    _validationContract.isRequired(req.body.kmInicial, 'Informe o Km do início da viagem');
+    _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
+    _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
+    // Atualiza as informações da viagem    
+    ctrlBase.put(_repo, _validationContract, req, res);
 };
 
 // Retorna todos
 viagemController.prototype.get = async (req, res) => {
-    let lista = await new repository().getAll();
-    res.status(200).send(lista);
+    ctrlBase.get(_repo, req, res);
 };
 
 // Retorna por id
 viagemController.prototype.getById = async (req, res) => {
-    let viagemEncontrada = await new repository().getById(req.params.id);
-    res.status(200).send(viagemEncontrada);
+    ctrlBase.getById(_repo, req, res);
 };
 
 // Remove por id
 viagemController.prototype.delete = async (req, res) => {
-    let deletado = await new repository().delete(req.params.id);
-    res.status(204).send(deletado);
+    ctrlBase.delete(_repo, req, res);
 };
 
 module.exports = viagemController;

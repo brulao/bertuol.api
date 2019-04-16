@@ -52,4 +52,4 @@ class ValidationContract {
     }
 }
 
-module.exports = ValidationContract;    
+module.exports = ValidationContract;

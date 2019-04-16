@@ -1,7 +1,9 @@
 'use strict'
 
-require('../models/caminhao-model');
 const repository = require('../repositories/caminhao-repository');
+const validation = require('../bin/helpers/validation');
+const ctrlBase = require('../bin/base/controller-base');
+const _repo = new repository();
 
 function caminhaoController() {
 
@@ -9,33 +11,43 @@ function caminhaoController() {
 
 // Criar
 caminhaoController.prototype.post = async (req, res) => {
-    let resultado = await new repository().create(req.body);
-    res.status(201).send(resultado);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
+    _validationContract.isRequired(req.body.modeloCaminhao, 'Informe o modelo do caminhão.');
+    _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
+    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista.');
+    // Salva os dados
+    ctrlBase.post(_repo, _validationContract, req, res);
 };
 
 // Atualiza pelo id
 caminhaoController.prototype.put = async (req, res) => {
-    let caminhaoEncontrado = await new repository().update(req.params.id, req.body);
-    res.status(202).send(caminhaoEncontrado);
-    console.log(`Registro atualizado no banco de dados: ${caminhaoEncontrado}`);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
+    _validationContract.isRequired(req.body.modeloCaminhao, 'Informe o modelo do caminhão.');
+    _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
+    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista.');
+    // Salva os dados
+    ctrlBase.put(_repo, _validationContract, req, res);
 };
 
 // Retorna todos
 caminhaoController.prototype.get = async (req, res) => {
-    let lista = await new repository().getAll();
-    res.status(200).send(lista);
+    ctrlBase.get(_repo, req, res);
 };
 
 // Retorna por id
 caminhaoController.prototype.getById = async (req, res) => {
-    let caminhaoEncontrado = await new repository().getById(req.params.id);
-    res.status(200).send(caminhaoEncontrado);
+    ctrlBase.getById(_repo, req, res);
 };
 
 // Remove po id
 caminhaoController.prototype.delete = async (req, res) => {
-    let deletado = await new repository().delete(req.params.id);
-    res.status(204).send(deletado);
+    ctrlBase.delete(_repo, req, res);
 };
 
 module.exports = caminhaoController;

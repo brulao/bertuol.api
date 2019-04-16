@@ -3,17 +3,16 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const variables = require('../bin/configuration/variables');
 
-//routers
-const administradorRouter = require('../routes/administrador-router');
+// Routers
 const motoristaRouter = require('../routes/motorista-router');
 const viagemRouter = require('../routes/viagem-router');
 const caminhaoRouter = require('../routes/caminhao-router');
 const usuarioRouter = require('../routes/usuario-router');
 
-//Criando/Invocando a Api/Server Web do Express
+// Criando/Invocando a Api/Server Web do Express
 const app = express();
 
-//Configuração de parse do JSON
+// Configuração de parse do JSON
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
@@ -42,11 +41,10 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Configurando as rotas
-app.use('/api/administrador', administradorRouter);
 app.use('/api/motorista', motoristaRouter);
 app.use('/api/viagem', viagemRouter);
 app.use('/api/caminhao', caminhaoRouter);
 app.use('/api/usuario', usuarioRouter);
 
-//Exportando nossa Api
+// Exportando nossa Api
 module.exports = app;

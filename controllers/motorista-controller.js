@@ -1,7 +1,9 @@
 'use strict'
 
-require('../models/motorista-model');
 const repository = require('../repositories/motorista-repository');
+const validation = require('../bin/helpers/validation');
+const ctrlBase = require('../bin/base/controller-base');
+const _repo = new repository();
 
 function motoristaController() {
 
@@ -9,33 +11,39 @@ function motoristaController() {
 
 // Criar
 motoristaController.prototype.post = async (req, res) => {
-    let resultado = await new repository().create(req.body);
-    res.status(201).send(resultado);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.nome, 'Informe o nome do motorista.');
+    _validationContract.isRequired(req.body.email, 'Informe o email do motorista.');
+    _validationContract.isRequired(req.body.telefoneUm, 'Informe o número de telefone principal do motorista.');
+    ctrlBase.post(_repo, _validationContract, req, res);
 };
 
 // Atualiza pelo id
 motoristaController.prototype.put = async (req, res) => {
-    let motoristaEncontrado = await new repository().update(req.params.id);
-    res.status(202).send(motoristaEncontrado);
-    console.log(`Registro atualizado no banco de dados: ${motoristaEncontrado}`);
+    // Cria o validador
+    let _validationContract = new validation();
+    // Critérios de validação
+    _validationContract.isRequired(req.body.nome, 'Informe o nome do motorista.');
+    _validationContract.isRequired(req.body.email, 'Informe o email do motorista.');
+    _validationContract.isRequired(req.body.telefoneUm, 'Informe o número de telefone principal do motorista.');
+    ctrlBase.put(_repo, _validationContract, req, res);
 };
 
 // Retorna todos
 motoristaController.prototype.get = async (req, res) => {
-    let lista = await new repository().getAll();
-    res.status(200).send(lista);
+    ctrlBase.get(_repo, req, res);
 };
 
 // Retorna por id
 motoristaController.prototype.getById = async (req, res) => {
-    let motoristaEncontrado = await new repository().getById(req.params.id);
-    res.status(200).send(motoristaEncontrado);
+    ctrlBase.getById(_repo, req, res);
 };
 
 // Remove por id
 motoristaController.prototype.delete = async (req, res) => {
-    let deletado = await new repository().delete(req.params.id);
-    res.status(204).send(deletado);
+    ctrlBase.delete(_repo, req, res);
 };
 
 module.exports = motoristaController;
