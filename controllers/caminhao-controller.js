@@ -17,7 +17,6 @@ caminhaoController.prototype.post = async (req, res) => {
     _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
     _validationContract.isRequired(req.body.modeloCaminhao, 'Informe o modelo do caminhão.');
     _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
-    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista.');
     // Salva os dados
     ctrlBase.post(_repo, _validationContract, req, res);
 };
@@ -30,7 +29,6 @@ caminhaoController.prototype.put = async (req, res) => {
     _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
     _validationContract.isRequired(req.body.modeloCaminhao, 'Informe o modelo do caminhão.');
     _validationContract.isRequired(req.body.placa, 'Informe a placa do caminhão.');
-    _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista.');
     // Salva os dados
     ctrlBase.put(_repo, _validationContract, req, res);
 };
