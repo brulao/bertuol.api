@@ -38,6 +38,11 @@ caminhaoController.prototype.get = async (req, res) => {
     ctrlBase.get(_repo, req, res);
 };
 
+// Retorna número de caminhões
+caminhaoController.prototype.contador = async (req, res) => {
+    ctrlBase.contador(_repo, req, res);
+};
+
 // Retorna por id
 caminhaoController.prototype.getById = async (req, res) => {
     ctrlBase.getById(_repo, req, res);

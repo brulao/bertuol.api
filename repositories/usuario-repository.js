@@ -40,6 +40,10 @@ class usuarioRepository {
         return await this._base._model.find({}, this._projection);
     }
 
+    async contador(){
+        return await this._base.contador();
+    }
+
     async getById(id) {
         return await this._base._model.findById(id, this._projection);
     }

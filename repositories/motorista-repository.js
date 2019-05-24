@@ -21,6 +21,10 @@ class motoristaRepository {
         return await this._base.getAll();
     }
 
+    async contador(){
+        return await this._base.contador();
+    } 
+
     async getById(id) {
         return await this._base.getById(id);
     }

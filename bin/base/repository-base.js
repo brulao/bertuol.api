@@ -31,6 +31,10 @@ class repositoryBase {
     async delete(id) {
         return await this._model.findByIdAndRemove(id);
     }
+
+    async contador(){
+        return await this._model.find().countDocuments();
+    }
     
 }
 

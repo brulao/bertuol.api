@@ -52,6 +52,17 @@ exports.get = async (repository, req, res) => {
     }
 };
 
+exports.contador = async (repository, req, res) => {
+    try {
+        let total = await repository.contador();
+        res.status(200).send({total});
+        console.log("Número de registros: " + total);
+    } catch (error) {
+        console.log('GET com errors, motivo: ', error);
+        res.status(500).send({ message: 'Erro no porcessamento', errors: error });
+    }
+}
+
 exports.getById = async (repository, req, res) => {
     try {
         let id = req.params.id;

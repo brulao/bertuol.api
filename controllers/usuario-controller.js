@@ -66,6 +66,11 @@ usuarioController.prototype.get = async (req, res) => {
     ctrlBase.get(_repo, req, res);
 };
 
+// Retorna número de usuários
+usuarioController.prototype.contador = async (req, res) => {
+    ctrlBase.contador(_repo, req, res);
+};
+
 // Retorna por id
 usuarioController.prototype.getById = async (req, res) => {
     ctrlBase.getById(_repo, req, res);

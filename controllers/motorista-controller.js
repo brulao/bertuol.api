@@ -36,6 +36,11 @@ motoristaController.prototype.get = async (req, res) => {
     ctrlBase.get(_repo, req, res);
 };
 
+// Retorna número de motoristas
+motoristaController.prototype.contador = async (req, res) => {
+    ctrlBase.contador(_repo, req, res);
+};
+
 // Retorna por id
 motoristaController.prototype.getById = async (req, res) => {
     ctrlBase.getById(_repo, req, res);

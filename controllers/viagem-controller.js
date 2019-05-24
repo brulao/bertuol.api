@@ -17,6 +17,7 @@ viagemController.prototype.post = async (req, res) => {
     // Critérios de validação
     _validationContract.isRequired(req.body.dataViagem, 'Informe a data da viagem');
     _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista');
+    _validationContract.isRequired(req.body.caminhao, 'Informe o caminhao');
     _validationContract.isRequired(req.body.cliente, 'Informe o nome do cliente');
     _validationContract.isRequired(req.body.destinatario, 'Informe o nome do destinatario');
     _validationContract.isRequired(req.body.notaFiscal, 'Informe o número da nota fiscal');
@@ -24,7 +25,9 @@ viagemController.prototype.post = async (req, res) => {
     _validationContract.isRequired(req.body.pesoCarga, 'Informe o peso da carga');
     _validationContract.isRequired(req.body.kmInicial, 'Informe o Km do início da viagem');
     _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
+    _validationContract.isRequired(req.body.kilometragem, 'Informe a kilometragem percorrida');
     _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
+    _validationContract.isRequired(req.body.consumo, 'Informe a média de consumo (km/litro)')
     // Realização a criação da viagem
     ctrlBase.post(_repo, _validationContract, req, res);
 };
@@ -36,14 +39,17 @@ viagemController.prototype.put = async (req, res) => {
     // Critérios de validação
     _validationContract.isRequired(req.body.dataViagem, 'Informe a data da viagem');
     _validationContract.isRequired(req.body.motorista, 'Informe o nome do motorista');
+    _validationContract.isRequired(req.body.caminhao, 'Informe o caminhao');
     _validationContract.isRequired(req.body.cliente, 'Informe o nome do cliente');
     _validationContract.isRequired(req.body.destinatario, 'Informe o nome do destinatario');
     _validationContract.isRequired(req.body.notaFiscal, 'Informe o número da nota fiscal');
     _validationContract.isRequired(req.body.produto, 'Informe o produto transportado');
     _validationContract.isRequired(req.body.pesoCarga, 'Informe o peso da carga');
     _validationContract.isRequired(req.body.kmInicial, 'Informe o Km do início da viagem');
-    _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
+    _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');   
+    _validationContract.isRequired(req.body.kilometragem, 'Informe a kilometragem percorrida');
     _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
+    _validationContract.isRequired(req.body.consumo, 'Informe a média de consumo (km/litro)')
     // Atualiza as informações da viagem    
     ctrlBase.put(_repo, _validationContract, req, res);
 };
@@ -51,6 +57,11 @@ viagemController.prototype.put = async (req, res) => {
 // Retorna todos
 viagemController.prototype.get = async (req, res) => {
     ctrlBase.get(_repo, req, res);
+};
+
+// Retorna número de viagens
+viagemController.prototype.contador = async (req, res) => {
+    ctrlBase.contador(_repo, req, res);
 };
 
 // Retorna por id
