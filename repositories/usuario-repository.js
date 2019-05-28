@@ -8,7 +8,7 @@ class usuarioRepository {
 
     constructor() {
         this._base = new base('Usuario');
-        this._projection = 'nome email _id';
+        this._projection = 'nome email _id ativo administrador dataCriacao';
     }
 
     // Função para autenticar usuário

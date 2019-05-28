@@ -21,6 +21,10 @@ class viagemRepository {
         return await this._base.getAll();
     }
 
+    async getViagens(){
+        return await this._base.getViagens();
+    }
+
     async contador(){
         return await this._base.contador();
     }

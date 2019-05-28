@@ -59,6 +59,11 @@ viagemController.prototype.get = async (req, res) => {
     ctrlBase.get(_repo, req, res);
 };
 
+// Retorna viagens ordenadas
+viagemController.prototype.getViagens = async (req, res) => {
+    ctrlBase.getViagens(_repo, req, res);
+};
+
 // Retorna número de viagens
 viagemController.prototype.contador = async (req, res) => {
     ctrlBase.contador(_repo, req, res);

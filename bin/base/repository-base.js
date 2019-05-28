@@ -24,6 +24,10 @@ class repositoryBase {
         return await this._model.find();
     }
 
+    async getViagens(){
+        return await this._model.find().sort( {dataViagem: 1} );
+    }
+
     async getById(id) {
         return await this._model.findById(id);
     }

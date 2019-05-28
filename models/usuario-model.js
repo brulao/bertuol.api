@@ -8,7 +8,7 @@ const usuarioModel = new schema({
     email: { type: String, required: true },
     senha: { type: String, required: true },
     ativo: { type: Boolean, default: true },
-    administrador: { type: Boolean, default: false },
+    administrador: { type: Boolean, default: false }, 
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
 

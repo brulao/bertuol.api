@@ -5,8 +5,8 @@ const schema = mongoose.Schema;
 
 const viagemModel = new schema({
     dataViagem: { type: Date, required: true, index: true },
-    motorista: { type: String, required: true, index: true },
-    caminhao: { type: String, required: true },
+    motorista: { type: String, required: true, index: true, trim: true },
+    caminhao: { type: String, required: true, trim: true },
     cliente: { type: String, required: true },
     destinatario: { type: String, required: true },
     notaFiscal: { type: String, required: true },
