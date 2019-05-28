@@ -24,10 +24,12 @@ viagemController.prototype.post = async (req, res) => {
     _validationContract.isRequired(req.body.produto, 'Informe o produto transportado');
     _validationContract.isRequired(req.body.pesoCarga, 'Informe o peso da carga');
     _validationContract.isRequired(req.body.kmInicial, 'Informe o Km do início da viagem');
-    _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
-    _validationContract.isRequired(req.body.kilometragem, 'Informe a kilometragem percorrida');
-    _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
-    _validationContract.isRequired(req.body.consumo, 'Informe a média de consumo (km/litro)')
+
+    // _validationContract.isRequired(req.body.kmFinal, 'Informe o Km do final da viagem');
+    // _validationContract.isRequired(req.body.kilometragem, 'Informe a kilometragem percorrida');
+    // _validationContract.isRequired(req.body.quantidadeLitros, 'Informe a quantidade de litros abastecida');
+    // _validationContract.isRequired(req.body.consumo, 'Informe a média de consumo (km/litro)')
+    
     // Realização a criação da viagem
     ctrlBase.post(_repo, _validationContract, req, res);
 };

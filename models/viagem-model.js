@@ -13,10 +13,10 @@ const viagemModel = new schema({
     produto: { type: String, required: true },
     pesoCarga: { type: Number, required: true },
     kmInicial: { type: Number, required: true },
-    kmFinal: { type: Number, required: true },
-    kilometragem: { type:Number, required: true },
-    quantidadeLitros: { type: Number, required: true },
-    consumo: { type: Number, required: true },
+    kmFinal: { type: Number },
+    kilometragem: { type:Number },
+    quantidadeLitros: { type: Number },
+    consumo: { type: Number },
     dataCriacao: { type: Date, default: Date.now },
 }, { versionKey: false });
 
