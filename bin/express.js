@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const variables = require('../bin/configuration/variables');
+require('dotenv').config();
 const cors = require('cors');
 
 // Routers
@@ -20,16 +20,12 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
 // Mongoose - Configurando a conexão com banco de dados
-const url = variables.Database.connection;
+const url = process.env.MONGO_URI;
 const options = {
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 500,
-    poolSize: 5,
     useNewUrlParser: true
 };
  
 mongoose.connect(url, options);
-mongoose.set('useCreateIndex', true);
 
 mongoose.connection.on('error', (err)=>{
     console.log('Erro na conexão com o banco de dados: ' + err);
